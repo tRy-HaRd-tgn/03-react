@@ -1,10 +1,17 @@
+import { useState } from "react";
+
 export default function Mycell({
   index,
   symbols,
   currentStep,
   setCurrentStep,
   setSymbol,
+  computerWinner,
+  setWinnerSequence,
+  className,
+  winnerSequence,
 }) {
+  
   const SYMBOL_X = "X";
   const SYMBOL_O = "O";
   const render = (e) => {
@@ -18,11 +25,15 @@ export default function Mycell({
         setCurrentStep(SYMBOL_X);
       }
     }
+    const winner = computerWinner(symbols)
+    setWinnerSequence(winner);
   };
-  
+
   return (
-    <button onClick={render} key={index} className="cell">
-      <span className={symbols[index] === 'X' ? 'symbol--o' : 'symbol--x'}>{symbols[index]}</span>
+    <button disabled={winnerSequence ? true : false} onClick={render} key={index} className={winnerSequence && (winnerSequence[0]===index || winnerSequence[1]===index ||winnerSequence[2]===index ) ? className : 'cell'}>
+      <span className={symbols[index] === "X" ? "symbol--x" : "symbol--o"}>
+        {symbols[index]}
+      </span>
     </button>
   );
 }

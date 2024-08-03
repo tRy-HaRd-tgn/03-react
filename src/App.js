@@ -18,19 +18,58 @@ function App() {
     null,
     null,
   ]);
+  const [winnerSequence, setWinnerSequence] = useState(null);
+  const computerWinner = (cells) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; ++i) {
+      const [a, b, c] = lines[i];
+      if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c])
+        return [a, b, c];
+    }
+  };
+
   const getSymbolClassName = (currentStep) => {
-    if(currentStep === SYMBOL_O) return 'symbol--o';
-    if(currentStep === SYMBOL_X) return 'symbol--x';
-    return '';
-  } 
+    if (currentStep === SYMBOL_O) return "symbol--o";
+    if (currentStep === SYMBOL_X) return "symbol--x";
+    return "";
+  };
   return (
     <div className="game">
-      <div className="game-info">Ход: {<span className={getSymbolClassName(currentStep)}>{currentStep}</span>}</div>
+      <div className="game-info">
+        Ход:{" "}
+        {<span className={getSymbolClassName(currentStep)}>{currentStep}</span>}
+      </div>
       <div className="game-field">
         {symbols.map((symbol, index) => {
-          return <Mycell setCurrentStep={setCurrentStep} currentStep={currentStep} index={index} symbols={symbols} setSymbol={setSymbol} ></Mycell>;
+          return (
+            <Mycell
+              setCurrentStep={setCurrentStep}
+              currentStep={currentStep}
+              index={index}
+              symbols={symbols}
+              setSymbol={setSymbol}
+              computerWinner={computerWinner}
+              winnerSequence={winnerSequence}
+              setWinnerSequence={setWinnerSequence}
+              className={winnerSequence ? "cell--win" : ""}
+            ></Mycell>
+          );
         })}
       </div>
+      {winnerSequence ? (
+        <button onClick={ ()=> {window.location.reload()}} style={{ marginTop: "15px" }}>reload</button>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
