@@ -18,6 +18,7 @@ function App() {
     null,
     null,
   ]);
+  const [count, setCount] = useState(0);
   const [winnerSequence, setWinnerSequence] = useState(null);
   const computerWinner = (cells) => {
     const lines = [
@@ -45,8 +46,29 @@ function App() {
   return (
     <div className="game">
       <div className="game-info">
-        Ход:{" "}
-        {<span className={getSymbolClassName(currentStep)}>{currentStep}</span>}
+        {winnerSequence ? (
+          <div>
+            Победа{" "}
+            <span className={currentStep == "X" ? "symbol--o" : "symbol--x"}>
+              {currentStep == "X" ? "O" : "X"}
+            </span>{" "}
+          </div>
+        ) : (
+          <></>
+        )}
+        {count != 9 && !winnerSequence ? (
+          <div>
+            Ход:{" "}
+            {
+              <span className={getSymbolClassName(currentStep)}>
+                {currentStep}
+              </span>
+            }
+          </div>
+        ) : (
+          <></>
+        )}
+        {count == 9 && !winnerSequence ? <div>Ничья</div> : <></>}
       </div>
       <div className="game-field">
         {symbols.map((symbol, index) => {
@@ -61,12 +83,21 @@ function App() {
               winnerSequence={winnerSequence}
               setWinnerSequence={setWinnerSequence}
               className={winnerSequence ? "cell--win" : ""}
+              setCount={setCount}
+              count={count}
             ></Mycell>
           );
         })}
       </div>
       {winnerSequence ? (
-        <button onClick={ ()=> {window.location.reload()}} style={{ marginTop: "15px" }}>reload</button>
+        <button
+          onClick={() => {
+            window.location.reload();
+          }}
+          style={{ marginTop: "15px" }}
+        >
+          reload
+        </button>
       ) : (
         <></>
       )}
