@@ -1,0 +1,52 @@
+.block {
+  width: 45vw;
+}
+.btn {
+  margin-top: 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #0d9488;
+  padding: 0px;
+}
+.h2 {
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.info {
+  display: flex;
+  width: 10vw;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+.man_info {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin-right: 10px;
+  color: #94a3b8;
+}
+.time_info {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #94a3b8;
+}

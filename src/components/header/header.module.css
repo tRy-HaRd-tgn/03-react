@@ -4,6 +4,7 @@
   width: 100vw;
   height: 10vh;
   background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .btn {
   display: flex;
@@ -41,20 +42,4 @@
     color: #14b8a6;
     transition: color 100ms ease;
   }
-}
-.name {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #0d9488;
-}
-.rank {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  color: #94a3b8;
 }

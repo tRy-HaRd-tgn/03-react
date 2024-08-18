@@ -28,7 +28,7 @@ function App() {
         currentStep={currentStep}
         count={count}
         getSymbolClassName={getSymbolClassName}
-      ></GameInfo>
+      />
       <div className="game-field">
         {symbols.map((symbol, index) => {
           return (
@@ -43,7 +43,7 @@ function App() {
               className={winnerSequence ? "cell--win" : ""}
               setCount={setCount}
               count={count}
-            ></Mycell>
+            />
           );
         })}
       </div>
