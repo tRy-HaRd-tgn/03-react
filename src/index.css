@@ -12,14 +12,13 @@ code {
     monospace;
 }
 .page {
-  width: 100vw;
-  height: 100vh;
-  background: #F8FAFC;
+  width: 100%;
+  height: 100%;
+  background: #f8fafc;
 }
 .menu {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: auto;
-  height: 90vh;
 }
