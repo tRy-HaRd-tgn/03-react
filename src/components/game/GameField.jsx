@@ -20,6 +20,7 @@ export default function GameField(props) {
             <img src={X} alt="" />
           </div>
         </div>
+
         <div className={classes.fieldMenu}>
           <MyButton color={"green"} size={"small"}>
             Ничья
@@ -29,9 +30,12 @@ export default function GameField(props) {
           </MyButton>
         </div>
       </div>
+
       <div className={classes.fieldGame}>
         {cells.map((_, i) => (
-          <button className={classes.button} key={i}></button>
+          <button className={classes.button} key={i}>
+            <img src={""}></img>
+          </button>
         ))}
       </div>
     </div>

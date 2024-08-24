@@ -13,6 +13,9 @@
   border: 1px solid #E2E8F0;
   padding: 0px;
   background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .p {
   font-family: "Inter";
