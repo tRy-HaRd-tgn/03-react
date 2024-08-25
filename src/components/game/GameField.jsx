@@ -1,5 +1,4 @@
 import classes from "./GameField.module.css";
-
 import MyButton from "../ui/MyButton";
 import { useState } from "react";
 import GameSymbol from "./GameSymbol";
@@ -16,6 +15,15 @@ export default function GameField() {
   const [cells, setCells] = useState(() => new Array(19 * 19).fill(null));
   const [currentMove, setCurrentMove] = useState(gameSymbols.Cross);
   const nextMove = getNextMove();
+  function makeTurn(index) {
+    let mas = cells;
+    if (mas[index] === null) {
+      console.log(index);
+      mas[index] = <GameSymbol currentMove={currentMove} />;
+      setCells(mas);
+      setCurrentMove(nextMove);
+    }
+  }
   return (
     <div className={classes.field}>
       <div className={classes.fieldHeader}>
@@ -42,9 +50,13 @@ export default function GameField() {
       </div>
 
       <div className={classes.fieldGame}>
-        {cells.map((_, i) => (
-          <button className={classes.button} key={i}>
-            <img src={""} alt=""></img>
+        {cells.map((symbol, index) => (
+          <button
+            className={classes.button}
+            onClick={() => makeTurn(index)}
+            key={index}
+          >
+            {symbol}
           </button>
         ))}
       </div>

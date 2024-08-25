@@ -12,5 +12,5 @@ export default function GameSymbol({ currentMove }) {
       [gameSymbols.Triangle]: triangle,
     }[currentMove] ?? X;
 
-  return <img src={icon} alt=""/>;
+  return <img src={icon} alt="" />;
 }
