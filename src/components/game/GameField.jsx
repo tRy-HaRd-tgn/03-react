@@ -1,23 +1,33 @@
 import classes from "./GameField.module.css";
-import X from "../../img/icons/X.svg";
-import O from "../../img/icons/O.svg";
-import square from "../../img/icons/square.svg";
-import triangle from "../../img/icons/triangle.svg";
+
 import MyButton from "../ui/MyButton";
-const cells = new Array(19 * 19).fill(null); // массив с нашими клетками
-export default function GameField(props) {
+import { useState } from "react";
+import GameSymbol from "./GameSymbol";
+import { gameSymbols } from "./constants";
+
+const moveOrder = [
+  gameSymbols.Cross,
+  gameSymbols.Zero,
+  gameSymbols.Triangle,
+  gameSymbols.Square,
+];
+
+export default function GameField() {
+  const [cells, setCells] = useState(() => new Array(19 * 19).fill(null));
+  const [currentMove, setCurrentMove] = useState(gameSymbols.Cross);
+  const nextMove = getNextMove();
   return (
     <div className={classes.field}>
       <div className={classes.fieldHeader}>
         <div className={classes.fieldInfo}>
           <div className={classes.wrap}>
             <h2 className={classes.h2}>Ход: </h2>
-            <img src={O} alt="" />
+            <GameSymbol currentMove={currentMove} />
           </div>
 
           <div className={classes.wrap}>
             <p className={classes.p}>Следующий: </p>
-            <img src={X} alt="" />
+            <GameSymbol currentMove={nextMove} />
           </div>
         </div>
 
@@ -34,10 +44,14 @@ export default function GameField(props) {
       <div className={classes.fieldGame}>
         {cells.map((_, i) => (
           <button className={classes.button} key={i}>
-            <img src={""}></img>
+            <img src={""} alt=""></img>
           </button>
         ))}
       </div>
     </div>
   );
+  function getNextMove() {
+    const nextMoveIndex = moveOrder.indexOf(currentMove) + 1;
+    return moveOrder[nextMoveIndex] ?? moveOrder[0];
+  }
 }
