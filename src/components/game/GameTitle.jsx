@@ -3,7 +3,7 @@ import arrow from "../../img/arrow.svg";
 import star from "../../img/star.svg";
 import man from "../../img/man.svg";
 import time from "../../img/time.svg";
-export default function GameTitle(props) {
+export default function GameTitle({playersCount,...props}) {
   return (
     <div className={classes.block}>
       <button className={classes.btn}>
@@ -15,7 +15,7 @@ export default function GameTitle(props) {
         <img src={star} style={{ marginRight: "10px" }} />
 
         <div className={classes.man_info}>
-          <img src={man} style={{ marginRight: "5px" }} />2
+          <img src={man} style={{ marginRight: "5px" }} />{playersCount}
         </div>
         <div className={classes.time_info}>
           <img src={time} style={{ marginRight: "5px" }} />1 мин на ход

@@ -1,29 +1,18 @@
 import classes from "./GameField.module.css";
 import MyButton from "../ui/MyButton";
-import { useState } from "react";
 import GameSymbol from "./GameSymbol";
-import { gameSymbols } from "./constants";
-
-const moveOrder = [
-  gameSymbols.Cross,
-  gameSymbols.Zero,
-  gameSymbols.Triangle,
-  gameSymbols.Square,
-];
+import useGameState from "../game/useGameState";
 
 export default function GameField() {
-  const [cells, setCells] = useState(() => new Array(19 * 19).fill(null));
-  const [currentMove, setCurrentMove] = useState(gameSymbols.Cross);
-  const nextMove = getNextMove();
-  function makeTurn(index) {
-    let mas = cells;
-    if (mas[index] === null) {
-      console.log(index);
-      mas[index] = <GameSymbol currentMove={currentMove} />;
-      setCells(mas);
-      setCurrentMove(nextMove);
-    }
-  }
+  const {
+    cells,
+    setCells,
+    currentMove,
+    setCurrentMove,
+    nextMove,
+    makeTurn,
+    getNextMove,
+  } = useGameState();
   return (
     <div className={classes.field}>
       <div className={classes.fieldHeader}>
@@ -62,8 +51,4 @@ export default function GameField() {
       </div>
     </div>
   );
-  function getNextMove() {
-    const nextMoveIndex = moveOrder.indexOf(currentMove) + 1;
-    return moveOrder[nextMoveIndex] ?? moveOrder[0];
-  }
 }

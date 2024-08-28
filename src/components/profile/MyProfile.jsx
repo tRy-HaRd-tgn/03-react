@@ -1,6 +1,6 @@
 import classes from "./MyProfile.module.css";
-import avatar from "../../img/avatar.jpg";
-export default function MyProfile({ name, rank, icon, ...props }) {
+
+export default function MyProfile({ name, rank, icon, avatar, ...props }) {
   return (
     <div className={classes.user}>
       <img src={avatar} alt="" style={{ width: "48px", height: "48px" }} />

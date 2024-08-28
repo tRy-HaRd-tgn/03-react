@@ -4,3 +4,9 @@ export const gameSymbols = {
   Triangle: "triangle",
   Cross: "cross"
 };
+export const moveOrder = [
+  gameSymbols.Cross,
+  gameSymbols.Zero,
+  gameSymbols.Triangle,
+  gameSymbols.Square,
+];
