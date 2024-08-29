@@ -10,3 +10,7 @@ export const moveOrder = [
   gameSymbols.Triangle,
   gameSymbols.Square,
 ];
+export const moveOrderSec = [
+  gameSymbols.Cross,
+  gameSymbols.Zero,
+];
