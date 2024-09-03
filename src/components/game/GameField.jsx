@@ -3,17 +3,14 @@ import MyButton from "../ui/MyButton";
 import GameSymbol from "./GameSymbol";
 import useGameState from "../game/useGameState";
 
-export default function GameField({ playersCount, ...props }) {
-  
-  const {
-    cells,
-    setCells,
-    currentMove,
-    setCurrentMove,
-    nextMove,
-    makeTurn,
-    getNextMove,
-  } = useGameState({playersCount});
+export default function GameField({
+  playersCount,
+  currentMove,
+  nextMove,
+  cells,
+  makeTurn,
+  ...props
+}) {
   return (
     <div className={classes.field}>
       <div className={classes.fieldHeader}>
@@ -38,7 +35,7 @@ export default function GameField({ playersCount, ...props }) {
           </MyButton>
         </div>
       </div>
-      
+
       <div className={classes.fieldGame}>
         {cells.map((symbol, index) => (
           <button

@@ -8,19 +8,42 @@ import avatar1 from "../../img/avatars/avatar-1.jpg";
 import avatar2 from "../../img/avatars/avatar-2.png";
 import avatar3 from "../../img/avatars/avatar-3.png";
 import avatar4 from "../../img/avatars/avatar-4.png";
-import { useState } from "react";
-export default function GameInfo({ playersCount, ...props }) {
+import { useEffect, useState } from "react";
+export default function GameInfo({ playersCount, currentMove, ...props }) {
+  console.log(currentMove);
   const players = [
-    { id: 1, name: "Paromovevg", rating: 1230, avatar: avatar1, icon: X },
+    {
+      id: 1,
+      name: "Paromovevg",
+      rating: 1230,
+      avatar: avatar1,
+      icon: X,
+      symbol: "cross",
+    },
     {
       id: 2,
       name: "VereIntending...",
       rating: 850,
       avatar: avatar2,
-      icon: triangle,
+      icon: O,
+      symbol: "zero",
     },
-    { id: 3, name: "Lara", rating: 1370, avatar: avatar3, icon: O },
-    { id: 4, name: "Додик", rating: 760, avatar: avatar4, icon: square },
+    {
+      id: 3,
+      name: "Lara",
+      rating: 1370,
+      avatar: avatar3,
+      icon: triangle,
+      symbol: "triangle",
+    },
+    {
+      id: 4,
+      name: "Додик",
+      rating: 760,
+      avatar: avatar4,
+      icon: square,
+      symbol: "square",
+    },
   ];
 
   return (
@@ -28,20 +51,33 @@ export default function GameInfo({ playersCount, ...props }) {
       <div className={classes.border} style={{ marginTop: "25px" }}>
         <div className={classes.Group}>
           {players.slice(0, playersCount).map((player, index) => (
-            <Bar key={index} isRight={index % 2} playerInfo={player} />
+            <Bar
+              key={index}
+              isRight={index % 2}
+              playerInfo={player}
+              isTimerRunning={currentMove === player.symbol}
+            />
           ))}
         </div>
       </div>
     </>
   );
 
-  function Bar({ isRight, playerInfo }) {
+  function Bar({ isRight, playerInfo, isTimerRunning }) {
     const [seconds, setSeconds] = useState(60);
     const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secondString = String(seconds % 60).padStart(2, "0");
+
+    useEffect(() => {
+      if (isTimerRunning) {
+        setInterval(() => {
+          setSeconds((s) => Math.max(s - 1, 0));
+        }, 1000);
+      }
+    }, [isTimerRunning]);
     return isRight ? (
       <>
-        <p className={classes.p && classes.r}>
+        <p className={classes.p && isTimerRunning ? classes.r : classes.l }>
           {minutesString}:{secondString}
         </p>
         <MyProfile
@@ -59,7 +95,7 @@ export default function GameInfo({ playersCount, ...props }) {
           avatar={playerInfo.avatar}
           icon={playerInfo.icon}
         />
-        <p className={classes.p && classes.l}>
+        <p className={classes.p && isTimerRunning ? classes.r : classes.l}>
           {minutesString}:{secondString}
         </p>
       </>
