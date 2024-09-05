@@ -10,7 +10,6 @@ import avatar3 from "../../img/avatars/avatar-3.png";
 import avatar4 from "../../img/avatars/avatar-4.png";
 import { useEffect, useState } from "react";
 export default function GameInfo({ playersCount, currentMove, ...props }) {
-  console.log(currentMove);
   const players = [
     {
       id: 1,
@@ -77,7 +76,7 @@ export default function GameInfo({ playersCount, currentMove, ...props }) {
     }, [isTimerRunning]);
     return isRight ? (
       <>
-        <p className={classes.p && isTimerRunning ? classes.r : classes.l }>
+        <p className={classes.p && isTimerRunning ? classes.r : classes.l}>
           {minutesString}:{secondString}
         </p>
         <MyProfile
