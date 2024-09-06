@@ -22,3 +22,9 @@ code {
   align-items: center;
   width: auto;
 }
+.winnerState{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

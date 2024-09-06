@@ -1,7 +1,6 @@
 import classes from "./GameField.module.css";
 import MyButton from "../ui/MyButton";
 import GameSymbol from "./GameSymbol";
-import useGameState from "../game/useGameState";
 
 export default function GameField({
   playersCount,
@@ -9,6 +8,7 @@ export default function GameField({
   nextMove,
   cells,
   makeTurn,
+  computeWinner,
   ...props
 }) {
   return (
@@ -40,7 +40,7 @@ export default function GameField({
         {cells.map((symbol, index) => (
           <button
             className={classes.button}
-            onClick={() => makeTurn(index)}
+            onClick={() => {makeTurn(index); computeWinner(cells)}}
             key={index}
           >
             {symbol}
