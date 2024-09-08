@@ -4,8 +4,6 @@ import GameTitle from "../components/game/GameTitle";
 import GameInfo from "../components/game/GameInfo";
 import GameField from "../components/game/GameField";
 import useGameState from "../components/game/useGameState";
-import GameSymbol from "../components/game/GameSymbol";
-import { moveOrder, moveOrderSec } from "../components/game/constants";
 import { useState } from "react";
 export default function HomePage() {
   const [playersCount] = useState(4);
@@ -17,14 +15,14 @@ export default function HomePage() {
     nextMove,
     makeTurn,
     getNextMove,
-    winnerSymbol,
     computeWinner,
+    winnerSequnce,
   } = useGameState({ playersCount });
   return (
     <div className="page">
-      <MyHeader></MyHeader>
+      <MyHeader />
       <main className="menu">
-        {!winnerSymbol ? (<><GameTitle playersCount={playersCount} />
+        <GameTitle playersCount={playersCount} />
         <GameInfo currentMove={currentMove} playersCount={playersCount} />
         <GameField
           currentMove={currentMove}
@@ -33,7 +31,8 @@ export default function HomePage() {
           makeTurn={makeTurn}
           playersCount={playersCount}
           computeWinner={computeWinner}
-        /></>):<h2 className='winnerState' >Победил: <GameSymbol currentMove={currentMove=='cross' ? moveOrder[moveOrder.indexOf(currentMove) +3 ]: moveOrder[moveOrder.indexOf(currentMove) -1]} style={{position:'relative',top:'2px'}}></GameSymbol></h2>}
+          winnerSequnce={winnerSequnce}
+        />
       </main>
     </div>
   );

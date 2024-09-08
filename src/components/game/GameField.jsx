@@ -1,6 +1,7 @@
 import classes from "./GameField.module.css";
 import MyButton from "../ui/MyButton";
 import GameSymbol from "./GameSymbol";
+import GameCell from "./GameCell";
 
 export default function GameField({
   playersCount,
@@ -9,6 +10,9 @@ export default function GameField({
   cells,
   makeTurn,
   computeWinner,
+  winnerSymbol,
+  setWinnerSymbol,
+  winnerSequnce,
   ...props
 }) {
   return (
@@ -38,13 +42,15 @@ export default function GameField({
 
       <div className={classes.fieldGame}>
         {cells.map((symbol, index) => (
-          <button
-            className={classes.button}
-            onClick={() => {makeTurn(index); computeWinner(cells)}}
+          <GameCell
+            onClick={() => {
+              makeTurn(index);
+            }}
+            isWinner={winnerSequnce?.includes(index)}
             key={index}
           >
             {symbol}
-          </button>
+          </GameCell>
         ))}
       </div>
     </div>
