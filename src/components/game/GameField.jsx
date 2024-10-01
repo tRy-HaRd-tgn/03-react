@@ -48,6 +48,7 @@ export default function GameField({
             }}
             isWinner={winnerSequnce?.includes(index)}
             key={index}
+            disable={winnerSequnce==undefined ? false : true}
           >
             {symbol}
           </GameCell>

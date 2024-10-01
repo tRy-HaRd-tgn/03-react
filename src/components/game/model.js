@@ -25,6 +25,12 @@ export default function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
       res[2].push(-fieldSize * (j - gap) + (j - gap) + index);
       res[3].push(fieldSize * (j - gap) + index);
     }
+    const temp = index % fieldSize;
+    if (temp < gap || temp >= fieldSize - gap) {
+      res.shift();
+      res.shift();
+      res.shift();
+    }
     return res;
   }
   for (let i = 0; i < cells.length; i++) {

@@ -6,7 +6,7 @@ import GameField from "../components/game/GameField";
 import useGameState from "../components/game/useGameState";
 import { useState } from "react";
 export default function HomePage() {
-  const [playersCount] = useState(4);
+  const [playersCount] = useState(2);
   const {
     cells,
     setCells,
