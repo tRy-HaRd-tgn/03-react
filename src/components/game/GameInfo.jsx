@@ -9,7 +9,7 @@ import avatar2 from "../../img/avatars/avatar-2.png";
 import avatar3 from "../../img/avatars/avatar-3.png";
 import avatar4 from "../../img/avatars/avatar-4.png";
 import { useEffect, useState } from "react";
-export default function GameInfo({ playersCount, currentMove, ...props }) {
+export default function GameInfo({ playersCount, currentMove, isWinner,...props }) {
   const players = [
     {
       id: 1,
@@ -54,7 +54,7 @@ export default function GameInfo({ playersCount, currentMove, ...props }) {
               key={index}
               isRight={index % 2}
               playerInfo={player}
-              isTimerRunning={currentMove === player.symbol}
+              isTimerRunning={currentMove === player.symbol && !isWinner}
             />
           ))}
         </div>
@@ -62,7 +62,7 @@ export default function GameInfo({ playersCount, currentMove, ...props }) {
     </>
   );
 
-  function Bar({ isRight, playerInfo, isTimerRunning }) {
+  function Bar({ isRight, playerInfo, isTimerRunning,isWinner }) {
     const [seconds, setSeconds] = useState(60);
     const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secondString = String(seconds % 60).padStart(2, "0");
@@ -96,7 +96,7 @@ export default function GameInfo({ playersCount, currentMove, ...props }) {
         />
         <p className={classes.p && isTimerRunning ? classes.r : classes.l}>
           {minutesString}:{secondString}
-        </p>
+        </p>  
       </>
     );
   }

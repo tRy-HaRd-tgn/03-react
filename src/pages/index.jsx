@@ -23,7 +23,7 @@ export default function HomePage() {
       <MyHeader />
       <main className="menu">
         <GameTitle playersCount={playersCount} />
-        <GameInfo currentMove={currentMove} playersCount={playersCount} />
+        <GameInfo currentMove={currentMove} playersCount={playersCount} isWinner={!!winnerSequnce}/>
         <GameField
           currentMove={currentMove}
           nextMove={nextMove}
