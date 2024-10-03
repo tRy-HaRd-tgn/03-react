@@ -6,7 +6,7 @@ import GameField from "../components/game/GameField";
 import useGameState from "../components/game/useGameState";
 import { useState } from "react";
 export default function HomePage() {
-  const [playersCount] = useState(2);
+  const [playersCount] = useState(4);
   const {
     cells,
     setCells,
@@ -23,7 +23,11 @@ export default function HomePage() {
       <MyHeader />
       <main className="menu">
         <GameTitle playersCount={playersCount} />
-        <GameInfo currentMove={currentMove} playersCount={playersCount} isWinner={!!winnerSequnce}/>
+        <GameInfo
+          currentMove={currentMove}
+          playersCount={playersCount}
+          isWinner={!!winnerSequnce}
+        />
         <GameField
           currentMove={currentMove}
           nextMove={nextMove}

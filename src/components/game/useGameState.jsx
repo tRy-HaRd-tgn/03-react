@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {gameSymbols, moveOrder, moveOrderSec } from "./constants";
+import { gameSymbols, moveOrder, moveOrderSec } from "./constants";
 import computeWinner from "./model";
 import GameSymbol from "./GameSymbol";
 // sequenceSize = 5 - количество символов для победы
@@ -8,6 +8,7 @@ export default function UseGameState({ playersCount, ...props }) {
   const [cells, setCells] = useState(() => new Array(19 * 19).fill(null));
   const [currentMove, setCurrentMove] = useState(gameSymbols.Cross);
   const nextMove = getNextMove();
+  const [playersTimeOver,setPLayerTimeOver] = useState([])
   function makeTurn(index) {
     let mas = cells;
     if (mas[index] === null) {
@@ -15,6 +16,9 @@ export default function UseGameState({ playersCount, ...props }) {
       setCells(mas);
       setCurrentMove(nextMove);
     }
+  }
+  const handleTimeOver= () => {
+    
   }
 
   function getNextMove() {
@@ -27,7 +31,7 @@ export default function UseGameState({ playersCount, ...props }) {
       return moveOrderSec[nextMoveIndex] ?? moveOrderSec[0];
     }
   }
-  const winnerSequnce = computeWinner(cells)
+  const winnerSequnce = computeWinner(cells);
   return {
     cells,
     setCells,
@@ -39,5 +43,4 @@ export default function UseGameState({ playersCount, ...props }) {
     winnerSequnce,
     computeWinner,
   };
-  
 }
