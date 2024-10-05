@@ -32,6 +32,7 @@
   width: 10vw;
   justify-content: space-between;
   white-space: nowrap;
+  margin-top: 15px;
 }
 .man_info {
   font-family: "Inter";

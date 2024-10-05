@@ -12,7 +12,7 @@ export default function UseGameState({ playersCount, ...props }) {
   }));
 
   const nextMove = getNextMove();
-  const [playersTimeOver, setPLayerTimeOver] = useState([]);
+
   function makeTurn(index) {
     let mas = cells;
     if (mas[index] === null) {
@@ -47,6 +47,9 @@ export default function UseGameState({ playersCount, ...props }) {
     }
   }
   const winnerSequnce = computeWinner(cells);
+  const winnerSymbol = winnerSequnce?.[0];
+  console.log(winnerSymbol)
+
   return {
     cells,
     currentMove,
@@ -56,5 +59,6 @@ export default function UseGameState({ playersCount, ...props }) {
     winnerSequnce,
     computeWinner,
     handleTimeOver,
+    winnerSymbol,
   };
 }

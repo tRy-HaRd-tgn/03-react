@@ -6,6 +6,7 @@
   cursor: pointer;
   font-family: "Inter";
 }
+
 .normal {
   font-size: 24px;
   padding: 8px 20px;
@@ -31,10 +32,17 @@
   border: 1px solid #0d9488 !important;
   border-radius: 4px;
 }
+.white:hover {
+  color: #14b8a6;
+  transition: color 100ms ease;
+}
 .green {
   background: #0d9488 !important;
   color: white;
   border: 1px solid #0d9488 !important;
   border-radius: 4px;
 }
-
+.green:hover {
+  background: #14b8a6 !important;
+  transition: all 100ms ease;
+}

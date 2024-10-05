@@ -5,6 +5,7 @@ import GameInfo from "../components/game/GameInfo";
 import GameField from "../components/game/GameField";
 import useGameState from "../components/game/useGameState";
 import { useState } from "react";
+import GameSymbol from "../components/game/GameSymbol";
 export default function HomePage() {
   const [playersCount] = useState(4);
   const {
@@ -15,6 +16,7 @@ export default function HomePage() {
     handleTimeOver,
     computeWinner,
     winnerSequnce,
+    winnerSymbol,
   } = useGameState({ playersCount });
   return (
     <div className="page">
@@ -24,9 +26,15 @@ export default function HomePage() {
         <GameInfo
           currentMove={currentMove}
           playersCount={playersCount}
-          isWinner={!!winnerSequnce}
+          isWinner={!!winnerSymbol}
           onTimeover={handleTimeOver}
         />
+        {winnerSymbol ? (
+          <h2>
+            победитель{" "}
+            <GameSymbol styles={{}} symbol={winnerSymbol}></GameSymbol>
+          </h2>
+        ) : null}
         <GameField
           currentMove={currentMove}
           nextMove={nextMove}
@@ -35,6 +43,7 @@ export default function HomePage() {
           playersCount={playersCount}
           computeWinner={computeWinner}
           winnerSequnce={winnerSequnce}
+          winnerSymbol={winnerSymbol}
         />
       </main>
     </div>
