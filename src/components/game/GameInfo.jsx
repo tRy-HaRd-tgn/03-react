@@ -9,7 +9,13 @@ import avatar2 from "../../img/avatars/avatar-2.png";
 import avatar3 from "../../img/avatars/avatar-3.png";
 import avatar4 from "../../img/avatars/avatar-4.png";
 import { useEffect, useState } from "react";
-export default function GameInfo({ playersCount, currentMove, isWinner,...props }) {
+export default function GameInfo({
+  playersCount,
+  currentMove,
+  isWinner,
+  onTimeover,
+  ...props
+}) {
   const players = [
     {
       id: 1,
@@ -54,6 +60,9 @@ export default function GameInfo({ playersCount, currentMove, isWinner,...props 
               key={index}
               isRight={index % 2}
               playerInfo={player}
+              onTimeover={() => {
+                onTimeover(player.symbol);
+              }}
               isTimerRunning={currentMove === player.symbol && !isWinner}
             />
           ))}
@@ -62,7 +71,7 @@ export default function GameInfo({ playersCount, currentMove, isWinner,...props 
     </>
   );
 
-  function Bar({ isRight, playerInfo, isTimerRunning,isWinner }) {
+  function Bar({ isRight, playerInfo, isTimerRunning, onTimeover }) {
     const [seconds, setSeconds] = useState(60);
     const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secondString = String(seconds % 60).padStart(2, "0");
@@ -74,6 +83,11 @@ export default function GameInfo({ playersCount, currentMove, isWinner,...props 
         }, 1000);
       }
     }, [isTimerRunning]);
+    useEffect(() => {
+      if (seconds === 0) {
+        onTimeover();
+      }
+    }, [seconds]);
     return isRight ? (
       <>
         <p className={classes.p && isTimerRunning ? classes.r : classes.l}>
@@ -96,7 +110,7 @@ export default function GameInfo({ playersCount, currentMove, isWinner,...props 
         />
         <p className={classes.p && isTimerRunning ? classes.r : classes.l}>
           {minutesString}:{secondString}
-        </p>  
+        </p>
       </>
     );
   }

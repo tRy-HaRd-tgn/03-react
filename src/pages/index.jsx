@@ -9,12 +9,10 @@ export default function HomePage() {
   const [playersCount] = useState(4);
   const {
     cells,
-    setCells,
     currentMove,
-    setCurrentMove,
     nextMove,
     makeTurn,
-    getNextMove,
+    handleTimeOver,
     computeWinner,
     winnerSequnce,
   } = useGameState({ playersCount });
@@ -27,6 +25,7 @@ export default function HomePage() {
           currentMove={currentMove}
           playersCount={playersCount}
           isWinner={!!winnerSequnce}
+          onTimeover={handleTimeOver}
         />
         <GameField
           currentMove={currentMove}

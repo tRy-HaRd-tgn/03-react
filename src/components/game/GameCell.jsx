@@ -6,7 +6,6 @@ export default function GameCell({
   disable,
   ...props
 }) {
-  console.log(isWinner);
   return (
     <button
       disabled={disable}
