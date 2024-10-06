@@ -47,7 +47,8 @@ export default function UseGameState({ playersCount, ...props }) {
     }
   }
   const winnerSequnce = computeWinner(cells);
-  const winnerSymbol = winnerSequnce?.[0];
+  const winnerSymbol = cells[winnerSequnce?.[0]]?.props?.currentMove;
+  
   console.log(winnerSymbol)
 
   return {

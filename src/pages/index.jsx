@@ -30,9 +30,19 @@ export default function HomePage() {
           onTimeover={handleTimeOver}
         />
         {winnerSymbol ? (
-          <h2>
-            победитель{" "}
-            <GameSymbol styles={{}} symbol={winnerSymbol}></GameSymbol>
+          <h2
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "0px",
+            }}
+          >
+            <p style={{ alignItems: "center", margin: "0px",marginRight: "5px" }}>победитель </p>
+            <GameSymbol
+              styles={{ transform: "translateY(55px)" }}
+              currentMove={winnerSymbol}
+            ></GameSymbol>
           </h2>
         ) : null}
         <GameField
